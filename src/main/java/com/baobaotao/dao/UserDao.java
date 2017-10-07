@@ -24,7 +24,7 @@ public class UserDao {
 
     public User findUserByUserName(final String userName){
         String sqlStr = "SELECT user_id,user_name,credits "
-                +"From y_user Where user_name=?";
+                +"From t_user Where user_name=?";
         final User user = new User();
         jdbcTemplate.query(sqlStr,new Object[]{userName},
                 new RowCallbackHandler(){
@@ -40,6 +40,6 @@ public class UserDao {
     public void updateLoginInfo(User user){
         String sqlStr = "UPDATE t_user SET last_visit=?,last_ip=?,credits=? "
                 +" WHERE user_id=?";
-        jdbcTemplate.update(sqlStr,new Object[]{user.getLastVisit(),user.getLastIP(),user.getUserId()});
+        jdbcTemplate.update(sqlStr,new Object[]{user.getLastVisit(),user.getLastIP(),user.getCredits(),user.getUserId()});
     }
 }
